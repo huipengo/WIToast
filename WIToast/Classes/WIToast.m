@@ -16,18 +16,24 @@
     }
 #endif
 
-// toast默认展示时间
+// toast 默认展示时间
 static NSTimeInterval const im_toast_duration = 2.0f;
-// toast默认消失时间
+// toast 默认消失时间
 static NSTimeInterval const im_toast_fade_duration = 0.3f;
 
-static CGFloat const im_vertical = 0.5f;
+static CGFloat const im_vertical = 0.4f;
 
 static CGFloat const im_view_max_width = 150.0f;
 static CGFloat const im_toast_constant = 12.0f;
 
 static CGFloat const im_image_width  = 44.0f;
 static CGFloat const im_image_height = 44.0f;
+
+// 纯文本最大宽度
+static CGFloat const im_text_max_width  = 220.0f;
+
+// 纯文本最大高度差
+static CGFloat const im_text_max_height_space = 150.0f;
 
 @interface WIToast ()
 
@@ -49,13 +55,24 @@ static CGFloat const im_image_height = 44.0f;
     return self;
 }
 
+- (void)setTextAlignment:(CGFloat)height {
+    self.messageLabel.textAlignment = (height > 30.0f) ? NSTextAlignmentLeft : NSTextAlignmentCenter;
+}
+
 /** 纯文本 toast */
 - (void)initializeTextToast:(NSString *)message {
     if (![_messageLabel isDescendantOfView:self]) {
         [self addSubview:self.messageLabel];
     }
     self.messageLabel.text = message;
-    self.messageLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:15.0f];
+    UIFont *font = [UIFont fontWithName:@"PingFangSC-Regular" size:15.0f];
+    self.messageLabel.font = font;
+    
+    CGSize r_size = CGSizeMake(im_text_max_width, [UIScreen mainScreen].bounds.size.height - im_text_max_height_space);
+    CGSize size = [self sizeWithBounding:message
+                                rectSize:r_size
+                           attributeFont:font];
+    [self setTextAlignment:size.height];
 
     [self __layoutTextConstraints];
 }
@@ -77,7 +94,15 @@ static CGFloat const im_image_height = 44.0f;
             [self addSubview:self.messageLabel];
         }
         self.messageLabel.text = message;
-        self.messageLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16.0f];
+        UIFont *font = [UIFont fontWithName:@"PingFangSC-Medium" size:16.0f];
+        self.messageLabel.font = font;
+        
+        CGFloat m_width = (im_view_max_width - im_toast_constant * 2);
+        CGSize r_size = CGSizeMake(m_width, [UIScreen mainScreen].bounds.size.height - im_text_max_height_space);
+        CGSize size = [self sizeWithBounding:message
+                                    rectSize:r_size
+                               attributeFont:font];
+        [self setTextAlignment:size.height];
     }
     
     if (image) {
@@ -139,8 +164,16 @@ static CGFloat const im_image_height = 44.0f;
     [self showInfo:message duration:im_toast_duration];
 }
 
++ (void)showInfo:(NSString * _Nonnull)message inView:(UIView * _Nullable)view {
+    [self showInfo:message inView:view duration:im_toast_duration];
+}
+
 + (void)showInfo:(NSString *)message duration:(NSTimeInterval)duration {
     [self showInfo:message inView:nil duration:duration];
+}
+
++ (void)showInfo:(NSString * _Nonnull)message inView:(UIView * _Nullable)view vertical:(CGFloat)vertical {
+    [self showInfo:message inView:view vertical:vertical duration:im_toast_duration];
 }
 
 + (void)showInfo:(NSString *)message inView:(UIView *)view duration:(NSTimeInterval)duration {
@@ -261,7 +294,7 @@ static CGFloat const im_image_height = 44.0f;
                                                                       toItem:nil
                                                                    attribute:NSLayoutAttributeNotAnAttribute
                                                                   multiplier:1.0
-                                                                    constant:140.0];
+                                                                    constant:im_text_max_width];
 
     NSLayoutConstraint *label_top = [NSLayoutConstraint constraintWithItem:self.messageLabel
                                                                  attribute:NSLayoutAttributeTop
@@ -496,8 +529,7 @@ static CGFloat const im_image_height = 44.0f;
     if (!string ||
         [string isKindOfClass:[NSNull class]] ||
         string.length == 0 ||
-        [string isEqualToString:@""] ||
-        [string isEqualToString:@"(null)"]) {
+        [string isEqualToString:@""]) {
         return YES;
     }
     
@@ -506,6 +538,21 @@ static CGFloat const im_image_height = 44.0f;
     }
     
     return NO;
+}
+
+- (CGSize)sizeWithBounding:(NSString *)text rectSize:(CGSize)rectSize attributeFont:(UIFont *)attributeFont {
+    if ([self.class wb_isEmpty:text]) {
+        return CGSizeZero;
+    }
+    
+    NSDictionary *attributes = @{ NSFontAttributeName: attributeFont };
+    
+    CGSize stringSize = [text boundingRectWithSize:rectSize
+                                           options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                        attributes:attributes
+                                           context:nil].size;
+    
+    return CGSizeMake(ceilf(stringSize.width), ceilf(stringSize.height));
 }
 
 @end

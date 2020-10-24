@@ -14,7 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 /** 纯文本 Toast */
 + (void)showInfo:(NSString * _Nonnull)message;
 
++ (void)showInfo:(NSString * _Nonnull)message inView:(UIView * _Nullable)view;
+
 + (void)showInfo:(NSString * _Nonnull)message duration:(NSTimeInterval)duration;
+
++ (void)showInfo:(NSString * _Nonnull)message inView:(UIView * _Nullable)view vertical:(CGFloat)vertical;
 
 + (void)showInfo:(NSString * _Nonnull)message inView:(UIView * _Nullable)view duration:(NSTimeInterval)duration;
 
@@ -36,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param message     显示信息
  @param image         显示图片
  @param view           显示在 view 上，传 nil，显示在 window
- @param vertical  相对于 view 高度的比例，取值 0.0-1.0，默认：0.5
+ @param vertical  相对于 view 高度的比例，取值 0.0-1.0，默认：0.4
  @param duration  显示时间，默认：2.0s
  */
 + (void)showInfo:(NSString * _Nullable)message image:(UIImage * _Nullable)image inView:(UIView * _Nullable)view vertical:(CGFloat)vertical duration:(NSTimeInterval)duration;

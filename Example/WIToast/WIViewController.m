@@ -22,7 +22,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.datas = @[ @"图文 Toast", @"纯文本 Toast", @"纯图 Toast" ];
+    self.datas = @[ @"图文 Toast", @"纯文本 Toast，纯文本 Toast，纯文本 Toast，纯文本 Toast，纯文本 Toast，纯文本 Toast", @"纯图 Toast" ];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
