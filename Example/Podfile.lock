@@ -1,0 +1,16 @@
+PODS:
+  - WIToast (0.0.1)
+
+DEPENDENCIES:
+  - WIToast (from `../`)
+
+EXTERNAL SOURCES:
+  WIToast:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  WIToast: fe3ed25a4f01e8c272b2f6455f9d20f42032271d
+
+PODFILE CHECKSUM: 8b3844575e93b31b5eb716b6ecd35d4c090976e9
+
+COCOAPODS: 1.10.0

@@ -1,0 +1,6 @@
+framework module WIToast {
+  umbrella header "WIToast-umbrella.h"
+
+  export *
+  module * { export * }
+}
