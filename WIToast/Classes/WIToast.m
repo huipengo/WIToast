@@ -17,7 +17,7 @@
 #endif
 
 // toast 默认展示时间
-static NSTimeInterval const im_toast_duration = 2.0f;
+static NSTimeInterval const im_toast_duration = 1.5f;
 // toast 默认消失时间
 static NSTimeInterval const im_toast_fade_duration = 0.3f;
 
@@ -103,6 +103,7 @@ static CGFloat const im_text_max_height_space = 150.0f;
                                     rectSize:r_size
                                attributeFont:font];
         [self setTextAlignment:size.height];
+        _messageLabel.lineBreakMode = NSLineBreakByCharWrapping;
     }
     
     if (image) {
@@ -131,85 +132,85 @@ static CGFloat const im_text_max_height_space = 150.0f;
     }
 }
 
-+ (NSBundle *)__bundle {
++ (NSBundle *)_im_bundle {
     NSBundle *bundle = [NSBundle bundleForClass:self.class];
     NSURL *URL = [bundle URLForResource:@"WIToast" withExtension:@"bundle"];
     return [NSBundle bundleWithURL:URL];
 }
 
-+ (UIImage *)__image:(NSString *)imageName {
-    NSBundle *bundle = [self __bundle];
++ (nullable UIImage *)_im_image:(NSString *)imageName {
+    NSBundle *bundle = [self _im_bundle];
     UIImage *image = [UIImage imageNamed:imageName inBundle:bundle compatibleWithTraitCollection:nil];
     return image;
 }
 
 #pragma mark - show toast
-+ (void)showSuccess:(NSString *)message {
-    UIImage *image = [self __image:@"wi_success"];
++ (void)showSuccess:(nullable NSString *)message {
+    UIImage *image = [self _im_image:@"wi_success"];
     [self showInfo:message image:image];
 }
 
-+ (void)showFailed:(NSString *)message {
-    UIImage *image = [self __image:@"wi_failed"];
++ (void)showFailed:(nullable NSString *)message {
+    UIImage *image = [self _im_image:@"wi_failed"];
     [self showInfo:message image:image];
 }
 
-+ (void)showWarning:(NSString *)message {
-    UIImage *image = [self __image:@"wi_warning"];
++ (void)showWarning:(nullable NSString *)message {
+    UIImage *image = [self _im_image:@"wi_warning"];
     [self showInfo:message image:image];
 }
 
 /** 纯文本 Toast */
-+ (void)showInfo:(NSString *)message {
++ (void)showInfo:(nonnull NSString *)message {
     [self showInfo:message duration:im_toast_duration];
 }
 
-+ (void)showInfo:(NSString * _Nonnull)message inView:(UIView * _Nullable)view {
++ (void)showInfo:(nonnull NSString *)message inView:(nullable UIView *)view {
     [self showInfo:message inView:view duration:im_toast_duration];
 }
 
-+ (void)showInfo:(NSString *)message duration:(NSTimeInterval)duration {
++ (void)showInfo:(nonnull NSString *)message duration:(NSTimeInterval)duration {
     [self showInfo:message inView:nil duration:duration];
 }
 
-+ (void)showInfo:(NSString * _Nonnull)message inView:(UIView * _Nullable)view vertical:(CGFloat)vertical {
++ (void)showInfo:(nonnull NSString *)message inView:(nullable UIView *)view vertical:(CGFloat)vertical {
     [self showInfo:message inView:view vertical:vertical duration:im_toast_duration];
 }
 
-+ (void)showInfo:(NSString *)message inView:(UIView *)view duration:(NSTimeInterval)duration {
++ (void)showInfo:(nonnull NSString *)message inView:(nullable UIView *)view duration:(NSTimeInterval)duration {
     [self showInfo:message inView:view vertical:im_vertical duration:duration];
 }
 
-+ (void)showInfo:(NSString *)message inView:(UIView *)view vertical:(CGFloat)vertical duration:(NSTimeInterval)duration {
++ (void)showInfo:(nonnull NSString *)message inView:(nullable UIView *)view vertical:(CGFloat)vertical duration:(NSTimeInterval)duration {
     [self showInfo:message image:nil inView:view vertical:vertical duration:duration];
 }
 
 /** 纯图 Toast */
-+ (void)showImage:(UIImage *)image {
++ (void)showImage:(nonnull UIImage *)image {
     [self showInfo:nil image:image];
 }
 
 /** 图文 Toast */
-+ (void)showInfo:(NSString *)message image:(UIImage *)image {
++ (void)showInfo:(nullable NSString *)message image:(nullable UIImage *)image {
     [self showInfo:message image:image duration:im_toast_duration];
 }
 
-+ (void)showInfo:(NSString *)message image:(UIImage *)image duration:(NSTimeInterval)duration {
++ (void)showInfo:(nullable NSString *)message image:(nullable UIImage *)image duration:(NSTimeInterval)duration {
     [self showInfo:message image:image inView:nil duration:duration];
 }
 
-+ (void)showInfo:(NSString *)message image:(UIImage *)image inView:(UIView *)view duration:(NSTimeInterval)duration {
++ (void)showInfo:(nullable NSString *)message image:(nullable UIImage *)image inView:(nullable UIView *)view duration:(NSTimeInterval)duration {
     [self showInfo:message image:image inView:view vertical:im_vertical duration:duration];
 }
 
-+ (void)showInfo:(NSString *)message image:(UIImage *)image inView:(UIView *)view vertical:(CGFloat)vertical duration:(NSTimeInterval)duration {
++ (void)showInfo:(nullable NSString *)message image:(nullable UIImage *)image inView:(nullable UIView *)view vertical:(CGFloat)vertical duration:(NSTimeInterval)duration {
     BOOL isEmpty = [self wb_isEmpty:message];
     if (isEmpty && (image == nil)) { return; }
     
     dispatch_main_toast_async_safe(^{
         WIToast *toast = [[WIToast alloc] init];
         if (!view) {
-            UIWindow *window = [UIApplication sharedApplication].windows.lastObject;
+            UIWindow *window = [self lastWindow];
             [window addSubview:toast];
         } else {
             [view addSubview:toast];
@@ -229,6 +230,14 @@ static CGFloat const im_text_max_height_space = 150.0f;
     });
 }
 
++ (UIWindow *)lastWindow {
+    UIWindow *lastWindow = [UIApplication sharedApplication].windows.lastObject;
+    if ((lastWindow == nil) || lastWindow.hidden || [lastWindow isKindOfClass:NSClassFromString(@"UITextEffectsWindow")]) {
+        lastWindow = [UIApplication sharedApplication].keyWindow;
+    }
+    return lastWindow;
+}
+
 #pragma mark--
 - (UILabel *)messageLabel {
     if (!_messageLabel) {
@@ -236,6 +245,7 @@ static CGFloat const im_text_max_height_space = 150.0f;
         _messageLabel.textColor     = [UIColor whiteColor];
         _messageLabel.numberOfLines = 0;
         _messageLabel.textAlignment = NSTextAlignmentCenter;
+        _messageLabel.lineBreakMode = NSLineBreakByClipping;
     }
     return _messageLabel;
 }
@@ -521,7 +531,7 @@ static CGFloat const im_text_max_height_space = 150.0f;
     [self layoutIfNeeded];
 }
 
-+ (BOOL)wb_isEmpty:(NSString * _Nullable)string {
++ (BOOL)wb_isEmpty:(nullable NSString *)string {
     if (![string isKindOfClass:[NSString class]]) {
         return YES;
     }
@@ -556,4 +566,3 @@ static CGFloat const im_text_max_height_space = 150.0f;
 }
 
 @end
-

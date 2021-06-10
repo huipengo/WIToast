@@ -29,14 +29,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00EACD9140E0730CF636CD8FCC0AC68C /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		00EACD9140E0730CF636CD8FCC0AC68C /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0CDC79F173118F5FDDE4BE8B39E5EEE7 /* Pods-WIToast_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WIToast_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		0E4727B0EC715636BFE2ECC4466B1814 /* Pods-WIToast_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-WIToast_Example-dummy.m"; sourceTree = "<group>"; };
-		141AC13FF1916AC36C496F77EFC625B0 /* WIToast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = WIToast.framework; path = WIToast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		141AC13FF1916AC36C496F77EFC625B0 /* WIToast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WIToast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2862227229C953C3CB3BD6A36EEB61DB /* WIToast.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = WIToast.h; path = WIToast/Classes/WIToast.h; sourceTree = "<group>"; };
-		3483AF2D1D2929990F42F9F202BAE092 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		3483AF2D1D2929990F42F9F202BAE092 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		34B4462A89126490A0AF320A0611F339 /* Pods-WIToast_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-WIToast_Example-Info.plist"; sourceTree = "<group>"; };
-		3CB44319880D00C8CA39CAD7DA1C83A6 /* WIToast.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = WIToast.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		3CB44319880D00C8CA39CAD7DA1C83A6 /* WIToast.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = WIToast.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		467E4F7602E8FD1AA710426ECEAF14E5 /* Pods-WIToast_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-WIToast_Example-umbrella.h"; sourceTree = "<group>"; };
 		5A72BE58950B2CFC49FA207731F11ED9 /* WIToast.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = WIToast.m; path = WIToast/Classes/WIToast.m; sourceTree = "<group>"; };
 		5AE12314461D6874DF66DEA0CE3A26CF /* WIToast-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "WIToast-dummy.m"; sourceTree = "<group>"; };
@@ -46,13 +46,13 @@
 		7B0C75114ACEC32F96BAC98912FA2EF4 /* WIToast.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = WIToast.modulemap; sourceTree = "<group>"; };
 		82EEEF6EE056A28B44248D7360FF80A8 /* WIToast.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = WIToast.bundle; path = WIToast/Assets/WIToast.bundle; sourceTree = "<group>"; };
 		9C4F8F44E0F24A540B4321289DA51B7F /* WIToast-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "WIToast-Info.plist"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		D0CC130316F499926ECC57AED256D053 /* Pods-WIToast_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WIToast_Example-frameworks.sh"; sourceTree = "<group>"; };
 		D44D20B257F622F4A88C8B4410924B0A /* WIToast-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WIToast-prefix.pch"; sourceTree = "<group>"; };
 		DAC2A28591BC3085847CC681FB7380DF /* Pods-WIToast_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-WIToast_Example.modulemap"; sourceTree = "<group>"; };
 		DBDD18FC7A99C45E119C4EB8FADE5B60 /* WIToast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = WIToast.debug.xcconfig; sourceTree = "<group>"; };
 		F988A06F5DD581EFEF2832EDEDD0495F /* Pods-WIToast_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-WIToast_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		FAF148E0927C945C70B73F1EA010137F /* Pods_WIToast_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_WIToast_Example.framework; path = "Pods-WIToast_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAF148E0927C945C70B73F1EA010137F /* Pods_WIToast_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WIToast_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDDFBC20CC8B22A29A7AAEA7E99CCA4B /* Pods-WIToast_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WIToast_Example.release.xcconfig"; sourceTree = "<group>"; };
 		FE781BBE450C2CD2F249F9EBEE8C9E39 /* WIToast-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WIToast-umbrella.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -251,7 +251,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1250;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -505,8 +505,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
